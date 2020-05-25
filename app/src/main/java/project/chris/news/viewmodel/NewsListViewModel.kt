@@ -12,7 +12,6 @@ import project.chris.news.model.TopHeadlinesBean
  */
 class NewsListViewModel(private var repository: NewsListRepository) : ViewModel() {
     private val topHeadlinesLiveData = MutableLiveData<TopHeadlinesBean>()
-
     fun getTopHeadlines(): LiveData<TopHeadlinesBean> {
 
         repository.getTopHeadlinesData {
@@ -21,5 +20,12 @@ class NewsListViewModel(private var repository: NewsListRepository) : ViewModel(
 
         return topHeadlinesLiveData
     }
+    fun insertArticleToFavorite(articlesBean: TopHeadlinesBean.ArticlesBean?){
+        if (articlesBean!=null)
+            repository.insertArticleToFavorite(articlesBean)
+    }
 
+    fun getFavoriteArticles():LiveData<List<TopHeadlinesBean.ArticlesBean>> {
+        return repository.getFavoriteArticles()
+    }
 }

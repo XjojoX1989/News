@@ -1,21 +1,25 @@
-package com.chris.mvvmnews.adapter
+package project.chris.news.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.chris.mvvmnews.view.NewsListFragmentDirections
 import project.chris.news.databinding.NewsListItemBinding
 import project.chris.news.model.TopHeadlinesBean
+import project.chris.news.view.NewsListFragmentDirections
+import project.chris.news.viewmodel.NewsListViewModel
 
-class NewsListAdapter(private val articles: List<TopHeadlinesBean.ArticlesBean?>?) :
+class NewsListAdapter(
+    private val articles: List<TopHeadlinesBean.ArticlesBean?>?,
+    private val viewModel: NewsListViewModel
+) :
     RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: NewsListItemBinding = NewsListItemBinding.inflate(inflater, parent, false)
-        return NewsListViewHolder(binding)
+        return NewsListViewHolder(binding, viewModel)
     }
 
     override fun onBindViewHolder(holder: NewsListViewHolder, position: Int) {
@@ -28,11 +32,14 @@ class NewsListAdapter(private val articles: List<TopHeadlinesBean.ArticlesBean?>
         else return 0
     }
 
-    class NewsListViewHolder(private val binding: NewsListItemBinding) :
+    class NewsListViewHolder(private val binding: NewsListItemBinding, private val viewModel: NewsListViewModel) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setNewsItemClickListener {
                 navigateToArticle(binding.articleBean?.url, it)
+            }
+            binding.setAddArticleToFavoriteListener {
+                viewModel.insertArticleToFavorite(binding.articleBean)
             }
         }
 

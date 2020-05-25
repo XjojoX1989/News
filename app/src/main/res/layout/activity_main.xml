@@ -13,5 +13,12 @@
             android:layout_height="match_parent"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_news" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_bar_menu"
+            android:background="?android:attr/windowBackground"
+            android:layout_gravity="bottom"/>
     </FrameLayout>
 </layout>

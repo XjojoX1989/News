@@ -1,4 +1,4 @@
-package com.chris.mvvmnews.adapter
+package project.chris.news.adapter
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

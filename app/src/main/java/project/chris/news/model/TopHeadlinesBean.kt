@@ -1,5 +1,9 @@
 package project.chris.news.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 class TopHeadlinesBean {
 
     /**
@@ -35,7 +39,8 @@ class TopHeadlinesBean {
         this.articles = articles
     }
 
-    class ArticlesBean {
+    @Entity(tableName = "ARTICLES_TABLE")
+    data class ArticlesBean (
         /**
          * source : {"id":null,"name":"Udn.com"}
          * author : 記者林士傑／即時報導
@@ -46,23 +51,11 @@ class TopHeadlinesBean {
          * publishedAt : 2020-05-25T04:12:11Z
          * content : null
          */
-        var source: SourceBean? = null
-        var author: String? = null
-        var title: String? = null
-        var description: String? = null
-        var url: String? = null
-        var urlToImage: String? = null
-        var publishedAt: String? = null
-        var content: Any? = null
+        @PrimaryKey @ColumnInfo(name="id") val title: String,
+        val  url: String? = null,val author: String? = null,
+        val  description: String? = null,
+        val  urlToImage: String? = null,
+        val  publishedAt: String? = null
 
-        class SourceBean {
-            /**
-             * id : null
-             * name : Udn.com
-             */
-            var id: Any? = null
-            var name: String? = null
-
-        }
-    }
+    )
 }
