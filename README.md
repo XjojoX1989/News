@@ -1,5 +1,5 @@
 # 基於Jetpack組件開發的新聞類 App
-使用技术：
+使用技術：
 1. Databinding
 2. Lifecycle
 3. LiveData 
