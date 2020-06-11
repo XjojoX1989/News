@@ -1,8 +1,8 @@
-# 基于Jetpack组件开发的新闻类 App
+# 基於Jetpack組件開發的新聞類 App
 使用技术：
 1. Databinding
-2. Lifecyclers
-3. LiveDAta 
+2. Lifecycle
+3. LiveData 
 4. Navigation 
 5. ViewModel
 6. Room
