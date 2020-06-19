@@ -1,10 +1,12 @@
 package project.chris.news.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import project.chris.news.R
 import project.chris.news.databinding.NewsListItemBinding
 import project.chris.news.model.TopHeadlinesBean
 import project.chris.news.view.NewsListFragmentDirections
@@ -19,7 +21,7 @@ class NewsListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: NewsListItemBinding = NewsListItemBinding.inflate(inflater, parent, false)
-        return NewsListViewHolder(binding, viewModel)
+        return NewsListViewHolder(binding, viewModel, parent.context)
     }
 
     override fun onBindViewHolder(holder: NewsListViewHolder, position: Int) {
@@ -32,7 +34,11 @@ class NewsListAdapter(
         else return 0
     }
 
-    class NewsListViewHolder(private val binding: NewsListItemBinding, private val viewModel: NewsListViewModel) :
+    class NewsListViewHolder(
+        private val binding: NewsListItemBinding,
+        private val viewModel: NewsListViewModel,
+        private val context: Context
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setNewsItemClickListener {
@@ -40,6 +46,7 @@ class NewsListAdapter(
             }
             binding.setAddArticleToFavoriteListener {
                 viewModel.insertArticleToFavorite(binding.articleBean)
+                binding.ivBookmark.setImageDrawable(context.resources.getDrawable(R.drawable.bookmark_on))
             }
         }
 

@@ -97,13 +97,13 @@
                 android:text="@{articleBean.publishedAt}" />
 
             <ImageView
-                android:id="@+id/ivFavorite"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/favorite"
+                android:id="@+id/ivBookmark"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/bookmark_off"
                 android:onClick="@{addArticleToFavoriteListener}"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
